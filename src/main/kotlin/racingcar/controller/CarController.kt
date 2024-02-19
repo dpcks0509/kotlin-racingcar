@@ -4,6 +4,7 @@ import racingcar.model.Car
 import racingcar.model.RacingGame
 import racingcar.util.Constant
 import racingcar.util.InputValidator
+import racingcar.util.MoveStrategy
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -51,10 +52,14 @@ class CarController {
         cars: List<Car>,
         numberOfRound: Int
     ) {
-        racingGame = RacingGame(cars = cars)
+        val moveStrategy = MoveStrategy(Pair(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        racingGame = RacingGame(
+            cars = cars,
+            moveStrategy = moveStrategy
+        )
         OutputView.outputStartGame()
         repeat(numberOfRound) {
-            racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+            racingGame.racingCars()
             OutputView.outputRoundResults(cars = cars)
         }
         val winnerNames = racingGame.judgeWinners().map { winner -> winner.name }

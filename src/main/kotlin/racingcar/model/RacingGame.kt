@@ -1,18 +1,16 @@
 package racingcar.model
 
-import racingcar.MoveStrategy
+import racingcar.util.MoveStrategy
 import racingcar.util.Constant
 import kotlin.random.Random
 
 class RacingGame(
-    private val cars: List<Car>
-) : MoveStrategy {
-    fun racingCars(randomBound: Pair<Int, Int>) {
+    private val cars: List<Car>,
+    private val moveStrategy: MoveStrategy
+) {
+    fun racingCars() {
         cars.forEach { car ->
-            racingCar(
-                car = car,
-                randomBound = randomBound
-            )
+            racingCar(car = car)
         }
     }
 
@@ -23,12 +21,8 @@ class RacingGame(
         }
     }
 
-    private fun racingCar(
-        car: Car,
-        randomBound: Pair<Int, Int>
-    ) {
-        if (shouldMove(randomBound = randomBound)
-        ) {
+    private fun racingCar(car: Car) {
+        if (moveStrategy.shouldMove()) {
             car.moveCar()
         }
     }
@@ -37,11 +31,5 @@ class RacingGame(
         return cars.maxOf { car ->
             car.position
         }
-    }
-
-    override fun shouldMove(randomBound: Pair<Int, Int>): Boolean {
-        val minRandomNumber = randomBound.first
-        val maxRandomNumber = randomBound.second
-        return Random.nextInt(minRandomNumber, maxRandomNumber) >= Constant.STANDARD_RANDOM_NUMBER
     }
 }

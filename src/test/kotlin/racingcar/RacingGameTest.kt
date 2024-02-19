@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import racingcar.model.Car
 import racingcar.model.RacingGame
 import racingcar.util.Constant
+import racingcar.util.MoveStrategy
 
 class RacingGameTest {
     @Test
@@ -14,8 +15,12 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomBound = Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        val moveStrategy = MoveStrategy(Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        val racingGame = RacingGame(
+            cars = cars,
+            moveStrategy = moveStrategy
+        )
+        racingGame.racingCars()
 
         assertThat(cars.all { car -> car.position == 1 }).isTrue
     }
@@ -27,8 +32,12 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
+        val moveStrategy = MoveStrategy(Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
+        val racingGame = RacingGame(
+            cars = cars,
+            moveStrategy = moveStrategy
+        )
+        racingGame.racingCars()
 
         assertThat(cars.all { car -> car.position == 0 }).isTrue
     }
@@ -40,8 +49,12 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomBound = Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        val moveStrategy = MoveStrategy(Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        val racingGame = RacingGame(
+            cars = cars,
+            moveStrategy = moveStrategy
+        )
+        racingGame.racingCars()
 
         val actualWinners = racingGame.judgeWinners()
 
@@ -55,8 +68,12 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomBound = Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        val moveStrategy = MoveStrategy(Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        val racingGame = RacingGame(
+            cars = cars,
+            moveStrategy = moveStrategy
+        )
+        racingGame.racingCars()
 
         val actualWinners = racingGame.judgeWinners()
 
@@ -70,8 +87,12 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
+        val moveStrategy = MoveStrategy(Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
+        val racingGame = RacingGame(
+            cars = cars,
+            moveStrategy = moveStrategy
+        )
+        racingGame.racingCars()
 
         val actualWinners = racingGame.judgeWinners()
 
@@ -85,8 +106,12 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
+        val moveStrategy = MoveStrategy(Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
+        val racingGame = RacingGame(
+            cars = cars,
+            moveStrategy = moveStrategy
+        )
+        racingGame.racingCars()
 
         val actualWinners = racingGame.judgeWinners()
 
